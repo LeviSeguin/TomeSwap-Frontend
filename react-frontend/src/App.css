@@ -7,7 +7,15 @@
     margin-left: 10%;
     margin-right: 10%;
   }
-  
+
 .App {
     font-family: 'Inter', sans-serif;
+}
+
+.list {
+    margin-top: 30px;
+}
+
+.item-content {
+
 }

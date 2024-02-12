@@ -16,8 +16,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <HorizontalScrollList items={items} />
-      
+      <div className="list">
+        <HorizontalScrollList  items={items} />
+      </div>
+
+      <div className="list">
+        <HorizontalScrollList  items={items} />
+      </div>
+
       <Footer />
     </div>
   );
