@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
 }
+
+.CenterScreen {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
 .App {
     font-family: 'Inter', sans-serif;
 }
