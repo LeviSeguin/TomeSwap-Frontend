@@ -1,0 +1,16 @@
+.horizontalScrollListContainer {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* Optional: Enables smooth scrolling on iOS devices */
+  }
+  
+  .horizontalScrollList {
+    display: inline-flex;
+  }
+  
+  .item {
+    padding: 100px;
+    margin-right: 30px;
+    border: 1px solid #ccc;
+  }
+  

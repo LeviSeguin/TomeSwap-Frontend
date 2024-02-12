@@ -1,15 +1,13 @@
 import React from 'react'
-import '../styles/Footer.module.css';
+import styles from '../styles/Footer.module.css';
 
 function Footer() {
   return (
-    <div className = "Footer">
+    <div className = {styles.footer}>
       <div className = "CenterScreen">
-        <ul className="footer-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+        <ul className={styles.links}>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact Us</a></li>
           </ul>
       </div>
     </div>
