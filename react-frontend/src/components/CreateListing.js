@@ -3,6 +3,8 @@ import axios from 'axios';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
+const SERVER_ADDRESS = 'http://10.0.0.35:8000';
+
 const CreateListing = () => {
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -13,8 +15,8 @@ const CreateListing = () => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/upload/', formData, {
-        headers: {
+      const response = await axios.post(`${SERVER_ADDRESS}/upload/`, formData, {
+          headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
