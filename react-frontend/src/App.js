@@ -1,61 +1,21 @@
 import React from 'react';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
-import HorizontalScrollList from './components/HorizontalScrollList.js';
-
-//testing fetch
-async function fetchData() {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/test/');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return null;
-  }
-}
-
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import AboutUs from './components/AboutUs.js';
+import Home from './components/Home.js';
+import CreateListing from './components/CreateListing.js';
+import SignIn from './components/SignIn.js';
 
 function App() {
-
-  let fetchedData;
-    // Fetch data when component mounts
-    React.useEffect(() => {
-      fetchData().then(data => {
-        console.log('Fetched data:', data);
-        console.log('just content:', data.content)
-        fetchedData = "test";
-        // Handle data here
-      });
-    }, []); // Empty dependency array to run effect only once on component mount
-
-    const items = [
-      <div className="item-content"><p>{fetchedData || 'Loading...'}</p></div>,
-      <div className="item-content">Item 2</div>,
-      <div className="item-content">Item 3</div>,
-      <div className="item-content">Item 4</div>,
-      <div className="item-content">Item 5</div>,
-      <div className="item-content">Item 5</div>,
-      <div className="item-content">Item 5</div>,
-    ];
-
   return (
-    
-    <div className="App">
-      <Header />
-      <div className="list">
-        <HorizontalScrollList  items={items} />
-      </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path='/createlisting' element={<CreateListing />} />
+        <Route path='/signin' element={<SignIn />} />
 
-      <div className="list">
-        <HorizontalScrollList  items={items} />
-      </div>
-
-      <Footer />
-    </div>
+      </Routes>
+    </Router>
   );
 }
 export default App;
