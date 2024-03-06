@@ -61,7 +61,6 @@ const CreateListing = () => {
     console.log("Yes button clicked");
   };
   
-  // Define handleNoClick function
   const handleNoClick = () => {
     console.log("No button clicked");
   };
@@ -81,30 +80,30 @@ const CreateListing = () => {
       <Footer />
   
       {bookDetails && (
-  <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", marginTop: "20px", marginLeft: "20%" }}>
-    <div style={{ marginRight: "20px" }}>
-      {bookDetails.thumbnail !== "N/A" && ( // Render book thumbnail if available
-        <img src={bookDetails.thumbnail} alt="Book Cover" style={{ height: "auto", maxWidth: "158px", marginBottom: "20px" }} />
+        <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", marginTop: "20px", marginLeft: "20%" }}>
+          <div style={{ marginRight: "20px" }}>
+            {bookDetails.thumbnail !== "N/A" && ( // Render book thumbnail if available
+              <img src={bookDetails.thumbnail} alt="Book Cover" style={{ height: "auto", maxWidth: "158px", marginBottom: "20px" }} />
+            )}
+            {bookDetails.thumbnail === "N/A" && uploadedImage && ( // Render uploaded image if book thumbnail is "N/A"
+              <img src={uploadedImage} alt="Uploaded" style={{ height: "auto", maxWidth: "158px", marginBottom: "20px" }} />
+            )}
+            <p>Is this your book?</p>
+            <button onClick={handleYesClick}>Yes</button>
+            <span style={{ margin: "0 10px" }}></span>
+            <button onClick={handleNoClick}>No</button>
+          </div>
+          <div>
+            <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Title: {bookDetails.title}</p>
+            <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Author: {bookDetails.authors}</p>
+            <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Category: {bookDetails.categories}</p>
+            <p style={{ fontSize: "1rem", marginBottom: "10px" }}>Description: {bookDetails.description}</p>
+          </div>
+        </div>
       )}
-      {bookDetails.thumbnail === "N/A" && uploadedImage && ( // Render uploaded image if book thumbnail is "N/A"
-        <img src={uploadedImage} alt="Uploaded" style={{ height: "auto", maxWidth: "158px", marginBottom: "20px" }} />
-      )}
-      <p>Is this your book?</p>
-      <button onClick={handleYesClick}>Yes</button>
-      <span style={{ margin: "0 10px" }}></span>
-      <button onClick={handleNoClick}>No</button>
-    </div>
-    <div>
-      <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Title: {bookDetails.title}</p>
-      <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Author: {bookDetails.authors}</p>
-      <p style={{ fontSize: "1rem", marginBottom: "2px" }}>Category: {bookDetails.categories}</p>
-      <p style={{ fontSize: "1rem", marginBottom: "10px" }}>Description: {bookDetails.description}</p>
-    </div>
-  </div>
-)}
 
   
-      {/* Error message pop-up */}
+      {/* Error message   pop-up */}
       {errorMessage && (
         <div className="error-popup" style={{ marginTop: "20px" }}>
           <div className="error-popup-content">
