@@ -15,12 +15,34 @@ const CreateListing = () => {
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
 
+    // Check file size
     const maxSize = 10 * 1024 * 1024; // Maximum file size limit (10MB)
     if (file.size > maxSize) {
       setErrorMessage("File size exceeds the limit.");
       return;
     }
 
+    // Read the first few bytes of the file to determine its signature
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const arr = new Uint8Array(fileReader.result).subarray(0, 4);
+      const header = arr.reduce((header, byte) => header + byte.toString(16), '');
+
+      // Check if the file signature matches PNG or JPG
+      if (header.startsWith("89504e47")) {
+        // PNG file signature
+        uploadImage(file);
+      } else if (header.startsWith("ffd8")) {
+        // JPG file signature
+        uploadImage(file);
+      } else {
+        setErrorMessage("Unsupported file format. Only PNG and JPG files are allowed.");
+      }
+    };
+    fileReader.readAsArrayBuffer(file);
+  };
+
+  const uploadImage = async (file) => {
     try {
       const formData = new FormData();
       formData.append("image", file);
@@ -60,11 +82,11 @@ const CreateListing = () => {
   const handleYesClick = () => {
     console.log("Yes button clicked");
   };
-  
+
   const handleNoClick = () => {
     console.log("No button clicked");
   };
-  
+
   return (
     <div className="App" onClick={handleClickOutside}>
       <Header />
@@ -78,7 +100,7 @@ const CreateListing = () => {
         />
       </div>
       <Footer />
-  
+
       {bookDetails && (
         <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", marginTop: "20px", marginLeft: "20%" }}>
           <div style={{ marginRight: "20px" }}>
@@ -102,8 +124,7 @@ const CreateListing = () => {
         </div>
       )}
 
-  
-      {/* Error message   pop-up */}
+      {/* Error message pop-up */}
       {errorMessage && (
         <div className="error-popup" style={{ marginTop: "20px" }}>
           <div className="error-popup-content">
@@ -116,11 +137,6 @@ const CreateListing = () => {
       )}
     </div>
   );
-  
-  
-  
-  
-  
 };
 
 export default CreateListing;
