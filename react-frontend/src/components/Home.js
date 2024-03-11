@@ -70,6 +70,7 @@ const [loading, setLoading] = useState(true);
 
       <Header />
       <div className="CenterScreen">
+        <div><p>This is the home page</p></div>
         <div className="list">
           <HorizontalScrollList items = {items}></HorizontalScrollList>
         </div>
