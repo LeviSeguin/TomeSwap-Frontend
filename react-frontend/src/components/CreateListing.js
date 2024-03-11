@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
-const SERVER_ADDRESS = 'http://10.0.0.35:8000';
+const SERVER_ADDRESS = 'localhost:8000';
 
 const CreateListing = () => {
   const [imageSrc, setImageSrc] = useState(null);
