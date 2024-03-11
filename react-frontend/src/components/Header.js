@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Header.module.css';
+import ListingsSearchBar from './ListingsSearchBar';
 
 function Header() {
   return (
@@ -10,7 +11,8 @@ function Header() {
         {/* Replace with logo img */}
         <p ><Link id={styles.LogoText} to="/">TomeSwap</Link></p>
         <div>
-          <input className={styles.SearchBar} type="text" placeholder="Search listings..." />
+           {/*<input className={styles.SearchBar} type="text" placeholder="Search listings..." />*/}
+          <ListingsSearchBar ></ListingsSearchBar>
         </div>
         <ul className={styles.links}>
           <li><Link to="/listings">Listings</Link></li>

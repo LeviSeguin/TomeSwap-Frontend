@@ -10,7 +10,7 @@
     text-decoration: none;
 }
 
-/* Search */
+/* Old Search css, moved to ListingsSearchBar */
 .SearchBar {
     padding: 12px;
     margin-top: 5px;
