@@ -4,7 +4,7 @@ import Header from "./Header.js";
 import Footer from "./Footer.js";
 import "../styles/ErrorPopup.css"; // Import CSS file
 
-const SERVER_ADDRESS = "http://10.0.0.35:8000";
+const SERVER_ADDRESS = "http://localhost:8000";
 
 const CreateListing = () => {
   const [errorMessage, setErrorMessage] = useState("");
