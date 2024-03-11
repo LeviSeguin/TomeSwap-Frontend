@@ -9,6 +9,7 @@ function Home() {
 
 // State to store the fetched data
 const [data, setData] = useState(null);
+const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Function to fetch data
@@ -27,8 +28,10 @@ const [data, setData] = useState(null);
         
         // Set the fetched data to the state
         setData(jsonData);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false);
       }
     };
 
@@ -37,13 +40,21 @@ const [data, setData] = useState(null);
 
     // Clean up function to cancel any pending fetch request when the component unmounts
     return () => {
-      // Any cleanup code here, such as cancelling ongoing fetch requests
+      
     };
   }, []); // Empty dependency array means this effect runs only once, after the initial render
   console.log(data)
 
   const items = [
-    <div className="item-content">{data.content}</div>,
+    <div>
+      {/* Conditionally render loading message if isLoading is true */}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        // Render content once data is fetched
+        <div className="item-content">{data.content}</div>
+      )}
+    </div>,
     <div className="item-content">Item 2</div>,
     <div className="item-content">Item 3</div>,
     <div className="item-content">Item 4</div>,
