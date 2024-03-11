@@ -79,7 +79,6 @@ const [loading, setLoading] = useState(true);
         </div>
       </div>
 
-
       <Footer />
     </div>
   );
