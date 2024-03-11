@@ -6,7 +6,10 @@ const SignIn = () => {
   return (
     <div className="App">
       <Header />
-       <p>Sign In Page</p>
+      <div className="CenterScreen">
+        <p>Sign In Page</p>
+      </div>
+
       <Footer />
     </div>
   );
