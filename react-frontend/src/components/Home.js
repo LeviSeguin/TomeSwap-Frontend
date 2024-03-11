@@ -67,14 +67,18 @@ const [loading, setLoading] = useState(true);
   return (
 
     <div className="App">
+
       <Header />
-      <div className="list">
+      <div className="CenterScreen">
+        <div className="list">
+          <HorizontalScrollList items = {items}></HorizontalScrollList>
+        </div>
+
+        <div className="list">
         <HorizontalScrollList items = {items}></HorizontalScrollList>
+        </div>
       </div>
 
-      <div className="list">
-      <HorizontalScrollList items = {items}></HorizontalScrollList>
-      </div>
 
       <Footer />
     </div>

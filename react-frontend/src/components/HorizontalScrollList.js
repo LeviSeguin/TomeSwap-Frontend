@@ -3,7 +3,6 @@ import styles from '../styles/HorizontalScrollList.module.css';
 
 const HorizontalScrollList = ({ items }) => {
   return (
-    <div className="CenterScreen">
         <div className={styles.horizontalScrollListContainer}>
         <div className={styles.horizontalScrollList}>
             {items.map((item, index) => (
@@ -13,7 +12,6 @@ const HorizontalScrollList = ({ items }) => {
             ))}
         </div>
         </div>
-    </div>
 
   );
 };
