@@ -41,18 +41,28 @@ const [data, setData] = useState(null);
     };
   }, []); // Empty dependency array means this effect runs only once, after the initial render
   console.log(data)
+
+  const items = [
+    <div className="item-content">{data.content}</div>,
+    <div className="item-content">Item 2</div>,
+    <div className="item-content">Item 3</div>,
+    <div className="item-content">Item 4</div>,
+    <div className="item-content">Item 5</div>,
+    <div className="item-content">Item 5</div>,
+    <div className="item-content">Item 5</div>,
+  ];
   
-  //deleted scrolling lists, used pre tag to display fetch data
+
   return (
 
     <div className="App">
       <Header />
       <div className="list">
-        <pre>{JSON.stringify(data, null, 2)}</pre> 
+        <HorizontalScrollList items = {items}></HorizontalScrollList>
       </div>
 
       <div className="list">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+      <HorizontalScrollList items = {items}></HorizontalScrollList>
       </div>
 
       <Footer />
