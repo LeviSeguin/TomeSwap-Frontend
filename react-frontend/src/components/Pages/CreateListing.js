@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Header from "./Header.js";
-import Footer from "./Footer.js";
-import "../styles/ErrorPopup.css"; // Import CSS file
+import Header from "../Header.js";
+import Footer from "../Footer.js";
+import "../../styles/ErrorPopup.css"; // Import CSS file
 
 const SERVER_ADDRESS = "http://10.0.0.35:8000";
 

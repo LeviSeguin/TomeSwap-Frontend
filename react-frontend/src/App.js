@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import AboutUs from './components/AboutUs.js';
-import Home from './components/Home.js';
-import CreateListing from './components/CreateListing.js';
-import SignIn from './components/SignIn.js';
-import PrivacyPolicy from './components/PrivacyPolicy.js';
-import ContactUs from './components/ContactUs.js';
+import AboutUs from './components/Pages/AboutUs.js';
+import Home from './components/Pages/Home.js';
+import CreateListing from './components/Pages/CreateListing.js';
+import SignIn from './components/Pages/SignIn.js';
+import PrivacyPolicy from './components/Pages/PrivacyPolicy.js';
+import ContactUs from './components/Pages/ContactUs.js';
 import 'buffer';
-import Listings from './components/Listings.js';
+import Listings from './components/Pages/Listings.js';
 
 function App() {
   return (
