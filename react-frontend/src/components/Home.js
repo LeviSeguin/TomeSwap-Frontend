@@ -41,13 +41,14 @@ const [data, setData] = useState(null);
     };
   }, []); // Empty dependency array means this effect runs only once, after the initial render
   console.log(data)
+  
+  //deleted scrolling lists, used pre tag to display fetch data
   return (
 
-    
     <div className="App">
       <Header />
       <div className="list">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <pre>{JSON.stringify(data, null, 2)}</pre> 
       </div>
 
       <div className="list">
