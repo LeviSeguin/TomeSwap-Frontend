@@ -8,7 +8,7 @@ function Header() {
       <div className="CenterScreen">
         <img src="" alt="" className="Logo" />
         {/* Replace with logo img */}
-        <p id={styles.LogoText}>TomeSwap</p>
+        <p ><Link id={styles.LogoText} to="/">TomeSwap</Link></p>
         <div>
           <input className={styles.SearchBar} type="text" placeholder="Search listings..." />
         </div>
