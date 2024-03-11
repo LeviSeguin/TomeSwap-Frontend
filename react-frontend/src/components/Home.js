@@ -2,56 +2,56 @@ import React from 'react';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import HorizontalScrollList from './HorizontalScrollList.js';
-
-//testing fetch
-async function fetchData() {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/test/');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return null;
-  }
-}
+import { useState, useEffect } from 'react';
 
 
 function Home() {
 
-  let fetchedData;
-    // Fetch data when component mounts
-    React.useEffect(() => {
-      fetchData().then(data => {
-        console.log('Fetched data:', data);
-        console.log('just content:', data.content)
-        fetchedData = "test";
-        // Handle data here
-      });
-    }, []); // Empty dependency array to run effect only once on component mount
+// State to store the fetched data
+const [data, setData] = useState(null);
 
-    const items = [
-      <div className="item-content"><p>{fetchedData || 'Loading...'}</p></div>,
-      <div className="item-content">Item 2</div>,
-      <div className="item-content">Item 3</div>,
-      <div className="item-content">Item 4</div>,
-      <div className="item-content">Item 5</div>,
-      <div className="item-content">Item 5</div>,
-      <div className="item-content">Item 5</div>,
-    ];
+  useEffect(() => {
+    // Function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make a GET request to fetch data from a URL
+        const response = await fetch('http://127.0.0.1:8000/api/test/');
+        
+        // Check if the request was successful
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        
+        // Parse the JSON response
+        const jsonData = await response.json();
+        
+        // Set the fetched data to the state
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    // Call the fetchData function when the component mounts
+    fetchData();
+
+    // Clean up function to cancel any pending fetch request when the component unmounts
+    return () => {
+      // Any cleanup code here, such as cancelling ongoing fetch requests
+    };
+  }, []); // Empty dependency array means this effect runs only once, after the initial render
+  console.log(data)
   return (
+
     
     <div className="App">
       <Header />
       <div className="list">
-        <HorizontalScrollList  items={items} />
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
 
       <div className="list">
-        <HorizontalScrollList  items={items} />
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
 
       <Footer />
