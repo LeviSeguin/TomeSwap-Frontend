@@ -6,6 +6,7 @@ import CreateListing from './components/CreateListing.js';
 import SignIn from './components/SignIn.js';
 import PrivacyPolicy from './components/PrivacyPolicy.js';
 import ContactUs from './components/ContactUs.js';
+import 'buffer';
 
 function App() {
   return (
