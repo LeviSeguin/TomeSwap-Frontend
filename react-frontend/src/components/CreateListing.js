@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import "../styles/ErrorPopup.css"; // Import CSS file
+import Swal from 'sweetalert2'
 
 const SERVER_ADDRESS = "http://10.0.0.35:8000";
 
@@ -79,27 +80,50 @@ const CreateListing = () => {
     }
   };
 
+  
+
   const handleYesClick = async () => {
+    console.log("Data being sent:", bookDetails);
+  
     // Check if bookDetails is available
     if (bookDetails) {
       try {
         // Make API call to backend to save data in PostgreSQL database
         const response = await axios.post(
-          `${SERVER_ADDRESS}/save-book`,
+          `${SERVER_ADDRESS}/save-book/`,
           {
             title: bookDetails.title,
             authors: bookDetails.authors,
             categories: bookDetails.categories,
           }
         );
-        
+  
+        // Handle successful response
         console.log("Book entry created in the database:", response.data);
+  
+        // Show success popup using a library like SweetAlert2
+        Swal.fire({
+          title: 'Success!',
+          text: 'Listing has been successfully made and stored in our database!',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+  
       } catch (error) {
         console.error("Error creating book entry:", error);
+  
+        // Show error popup using SweetAlert2
+        Swal.fire({
+          title: 'Error!',
+          text: 'An error occurred while creating the listing.',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        });
       }
     }
   };
-
+  
+  
   const handleNoClick = () => {
     console.log("No button clicked");
   };
