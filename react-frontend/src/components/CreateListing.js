@@ -79,8 +79,25 @@ const CreateListing = () => {
     }
   };
 
-  const handleYesClick = () => {
-    console.log("Yes button clicked");
+  const handleYesClick = async () => {
+    // Check if bookDetails is available
+    if (bookDetails) {
+      try {
+        // Make API call to backend to save data in PostgreSQL database
+        const response = await axios.post(
+          `${SERVER_ADDRESS}/save-book`,
+          {
+            title: bookDetails.title,
+            authors: bookDetails.authors,
+            categories: bookDetails.categories,
+          }
+        );
+        
+        console.log("Book entry created in the database:", response.data);
+      } catch (error) {
+        console.error("Error creating book entry:", error);
+      }
+    }
   };
 
   const handleNoClick = () => {
