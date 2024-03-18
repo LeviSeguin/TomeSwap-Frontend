@@ -84,7 +84,7 @@ const CreateAccountForm = () => {
         />
       </div>
       <button type="submit">Create Account</button>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
+      {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
     </form>
   );
 };
