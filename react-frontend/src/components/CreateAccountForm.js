@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import '../styles/SignInForm.css';
+import '../styles/CreateAccountForm.css';
 
-const SignInForm = () => {
+const CreateAccountForm = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -17,21 +22,22 @@ const SignInForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Basic validation
-    if (!username || !password) {
-      setError('Please enter both username and password');
+    if (!username || !email || !password) {
+      setError('Please fill in all fields');
       return;
     }
     // You can perform additional validation or submit data to a server here
-    console.log('Submitting...', { username, password });
+    console.log('Submitting...', { username, email, password });
     // Reset form fields
     setUsername('');
+    setEmail('');
     setPassword('');
     setError('');
   };
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-        <p>Log In</p>
+    <p>Create an Account</p>
       <div>
         <label htmlFor="username">Username:</label>
         <input
@@ -39,6 +45,15 @@ const SignInForm = () => {
           id="username"
           value={username}
           onChange={handleUsernameChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
         />
       </div>
       <div>
@@ -50,10 +65,10 @@ const SignInForm = () => {
           onChange={handlePasswordChange}
         />
       </div>
-      <button type="submit">Login</button>
-      {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
+      <button type="submit">Create Account</button>
+      {error && <div style={{ color: 'red' }}>{error}</div>}
     </form>
   );
 };
 
-export default  SignInForm;
+export default CreateAccountForm;
