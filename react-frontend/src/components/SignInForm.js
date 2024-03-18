@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../styles/SignInForm.css';
 
 const SignInForm = () => {
   const [username, setUsername] = useState('');
@@ -29,7 +30,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
         <input
@@ -49,7 +50,7 @@ const SignInForm = () => {
         />
       </div>
       <button type="submit">Login</button>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
+      {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
     </form>
   );
 };
