@@ -5,6 +5,8 @@ import SignInForm from '../SignInForm.js';
 import CreateAccountForm from '../CreateAccountForm.js';
 import '../../styles/SignIn.css'
 
+//TODO: switch to css modules, currently the css for SignInForm and CreateAccountForm overlap
+
 const SignIn = () => {
 
   return (

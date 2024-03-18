@@ -5,6 +5,7 @@ const CreateAccountForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
@@ -19,11 +20,19 @@ const CreateAccountForm = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Basic validation
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
       return;
     }
     // You can perform additional validation or submit data to a server here
@@ -32,6 +41,7 @@ const CreateAccountForm = () => {
     setUsername('');
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
     setError('');
   };
 
@@ -62,6 +72,15 @@ const CreateAccountForm = () => {
           id="password"
           value={password}
           onChange={handlePasswordChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
         />
       </div>
       <button type="submit">Create Account</button>
