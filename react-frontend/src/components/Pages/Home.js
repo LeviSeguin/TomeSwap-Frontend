@@ -32,6 +32,7 @@ const [loading, setLoading] = useState(true);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
+        setData(""); //set data to empty string to avoid null errors
       }
     };
 
@@ -55,6 +56,7 @@ const [loading, setLoading] = useState(true);
         <div className="item-content">{data.content}</div>
       )}
     </div>,
+
     <div className="item-content">Item 2</div>,
     <div className="item-content">Item 3</div>,
     <div className="item-content">Item 4</div>,
