@@ -16,7 +16,7 @@ const [loading, setLoading] = useState(true);
     const fetchData = async () => {
       try {
         // Make a GET request to fetch data from a URL
-        const response = await fetch('http://127.0.0.1:8000/api/test/');
+        const response = await fetch('http://127.0.0.1:8000/api/test');
         
         // Check if the request was successful
         if (!response.ok) {
