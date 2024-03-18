@@ -88,20 +88,21 @@ const CreateListing = () => {
     // Check if bookDetails is available
     if (bookDetails) {
       try {
-        // Make API call to backend to save data in PostgreSQL database
+        // Make call to backend 
         const response = await axios.post(
           `${SERVER_ADDRESS}/save-book/`,
           {
             title: bookDetails.title,
             authors: bookDetails.authors,
             categories: bookDetails.categories,
+            thumbnail: bookDetails.thumbnail,
           }
         );
   
         // Handle successful response
         console.log("Book entry created in the database:", response.data);
   
-        // Show success popup using a library like SweetAlert2
+        // Show success popup using SweetAlert2
         Swal.fire({
           title: 'Success!',
           text: 'Listing has been successfully made and stored in our database!',
@@ -111,14 +112,6 @@ const CreateListing = () => {
   
       } catch (error) {
         console.error("Error creating book entry:", error);
-  
-        // Show error popup using SweetAlert2
-        Swal.fire({
-          title: 'Error!',
-          text: 'An error occurred while creating the listing.',
-          icon: 'error',
-          confirmButtonText: 'Close'
-        });
       }
     }
   };
