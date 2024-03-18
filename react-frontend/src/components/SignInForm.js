@@ -31,7 +31,6 @@ const SignInForm = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-        <p>Log In</p>
       <div>
         <label htmlFor="username">Username:</label>
         <input

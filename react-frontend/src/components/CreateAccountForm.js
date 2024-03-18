@@ -37,7 +37,6 @@ const CreateAccountForm = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-    <p>Create an Account</p>
       <div>
         <label htmlFor="username">Username:</label>
         <input
