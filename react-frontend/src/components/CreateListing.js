@@ -3,9 +3,9 @@ import axios from "axios";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import "../styles/ErrorPopup.css"; // Import CSS file
+import { BACKEND_ADDRESS } from './config';
 import Swal from 'sweetalert2'
 
-const SERVER_ADDRESS = "http://10.0.0.35:8000";
 
 const CreateListing = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -48,7 +48,7 @@ const CreateListing = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await axios.post(`${SERVER_ADDRESS}/upload/`, formData, {
+      const response = await axios.post(`${BACKEND_ADDRESS}/upload/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -90,7 +90,7 @@ const CreateListing = () => {
       try {
         // Make call to backend 
         const response = await axios.post(
-          `${SERVER_ADDRESS}/save-book/`,
+          `${BACKEND_ADDRESS}/save-book/`,
           {
             title: bookDetails.title,
             authors: bookDetails.authors,
