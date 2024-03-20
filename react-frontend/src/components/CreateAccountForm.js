@@ -24,7 +24,7 @@ const CreateAccountForm = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Basic validation
     if (!username || !email || !password || !confirmPassword) {
@@ -35,15 +35,35 @@ const CreateAccountForm = () => {
       setError('Passwords do not match');
       return;
     }
-    // You can perform additional validation or submit data to a server here
-    console.log('Submitting...', { username, email, password });
-    // Reset form fields
-    setUsername('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setError('');
+  
+    try {
+      const response = await fetch('http://127.0.0.1:8000/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const responseData = await response.json();
+      console.log('Registration successful:', responseData);
+      // Reset form fields
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setError('');
+      // Optionally, you can redirect the user to a success page or do other actions
+    } catch (error) {
+      console.error('Error submitting registration:', error.message);
+      // Handle error, e.g., display error message to the user
+    }
   };
+  
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
