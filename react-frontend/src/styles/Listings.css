@@ -39,3 +39,30 @@
     background-color: rgba(0, 0, 0, 0.5); /* Grey transparent overlay */
     z-index: 1; 
   }
+
+  .popup-card {
+    /* Position the popup (absolute positioning recommended) */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Set background color and opacity */
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 20px;
+    /* Set z-index to ensure it appears above other elements */
+    z-index: 10;
+    /* Add transitions for smooth animations (optional) */
+    transition: all 0.3s ease-in-out;
+
+  }
+  
+  .popup-card.show {
+    /* Show the popup when visible state is true */
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popup-card-text {
+    color: white;
+  }
+

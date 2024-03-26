@@ -1,44 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import Header from './Header.js';
-import Footer from './Footer.js';
-import '../styles/Listings.css'; // Import CSS file for styling
-import { BACKEND_ADDRESS } from './config';
+import React, { useState, useEffect } from "react";
+import Header from "./Header.js";
+import Footer from "./Footer.js";
+import "../styles/Listings.css"; // Import CSS file for styling
+import { BACKEND_ADDRESS } from "./config";
+import ListingDetailsPopup from "./ListingDetailsPopup.jsx";
 
 function Listings() {
-  const [listings, setListings] = useState([]); // State to store fetched listings
-  const [response, setResponse] = useState(null); // State to store the response object
+  const [listings, setListings] = useState([]);
+  const [response, setResponse] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedListing, setSelectedListing] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BACKEND_ADDRESS}/fetch-listings/`);        
-        setResponse(response); // Log the entire response object
+        const response = await fetch(`${BACKEND_ADDRESS}/fetch-listings/`);
+        setResponse(response);
         if (!response.ok) {
-          throw new Error('Failed to fetch listings');
+          throw new Error("Failed to fetch listings");
         }
         const data = await response.json();
         setListings(data);
       } catch (error) {
-        console.error('Error fetching listings:', error);
+        console.error("Error fetching listings:", error);
       }
     };
 
     fetchData();
-  }, []); // Empty dependency array fetch data once
+  }, []);
+
+  const handleListingClick = (listing) => {
+    console.log("Listing clicked:", listing); // Log clicked listing data
+    setShowPopup(true);
+    setSelectedListing(listing);
+    
+  };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    setSelectedListing(null);
+  };
 
   return (
-    <div>
-      <Header /> 
+    <div className="App">
+      <Header />
 
       {listings.length > 0 ? (
-        <ul className="listings-grid"> 
+        <ul className="listings-grid">
           {listings.map((listing) => (
-            <li key={listing.listingid} className="listing-item"> 
-              <div className="listing-content"> 
+            <li
+              key={listing.listingid}
+              className="listing-item"
+              onClick={() => handleListingClick(listing)}
+            >
+              <div className="listing-content">
                 <h3>{listing.title}</h3>
                 <p>by: {listing.authors}</p>
                 <p>category: {listing.categories}</p>
-                <p>listed by: {listing.username}</p>
                 <img src={listing.thumbnail} alt={listing.title} />
               </div>
             </li>
@@ -47,7 +65,15 @@ function Listings() {
       ) : (
         <p>Loading listings...</p>
       )}
-      <Footer /> 
+
+      {showPopup && (
+        <ListingDetailsPopup
+          listing={selectedListing}
+          onClose={handlePopupClose}
+        />
+      )}
+
+      <Footer />
     </div>
   );
 }

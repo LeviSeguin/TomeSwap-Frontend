@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Header.module.css';
+import searchImage from './search.png'; // Import the search image
 
 function Header() {
   return (
@@ -9,8 +10,11 @@ function Header() {
         <img src="" alt="" className="Logo" />
         {/* Replace with logo img */}
         <p id={styles.LogoText}>TomeSwap</p>
-        <div>
-          <input className={styles.SearchBar} type="text" placeholder="Search listings..." />
+        <div className={styles.searchButtonContainer}>
+          {/* Use the search image as a link */}
+          <Link to="/search" className={styles.searchButton}>
+            <img src={searchImage} alt="Search" />
+          </Link>
         </div>
         <ul className={styles.links}>
           <li><Link to="/">Listings</Link></li>
