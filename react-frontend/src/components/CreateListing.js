@@ -96,6 +96,7 @@ const CreateListing = () => {
             authors: bookDetails.authors,
             categories: bookDetails.categories,
             thumbnail: bookDetails.thumbnail,
+            description: bookDetails.description,
           }
         );
   
