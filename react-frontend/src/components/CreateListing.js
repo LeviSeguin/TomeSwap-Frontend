@@ -3,8 +3,9 @@ import axios from "axios";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import "../styles/ErrorPopup.css"; // Import CSS file
+import { BACKEND_ADDRESS } from './config';
+import Swal from 'sweetalert2'
 
-const SERVER_ADDRESS = "http://10.0.0.35:8000";
 
 const CreateListing = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -47,7 +48,7 @@ const CreateListing = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await axios.post(`${SERVER_ADDRESS}/upload/`, formData, {
+      const response = await axios.post(`${BACKEND_ADDRESS}/upload/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -79,10 +80,44 @@ const CreateListing = () => {
     }
   };
 
-  const handleYesClick = () => {
-    console.log("Yes button clicked");
-  };
+  
 
+  const handleYesClick = async () => {
+    console.log("Data being sent:", bookDetails);
+  
+    // Check if bookDetails is available
+    if (bookDetails) {
+      try {
+        // Make call to backend 
+        const response = await axios.post(
+          `${BACKEND_ADDRESS}/save-book/`,
+          {
+            title: bookDetails.title,
+            authors: bookDetails.authors,
+            categories: bookDetails.categories,
+            thumbnail: bookDetails.thumbnail,
+            description: bookDetails.description,
+          }
+        );
+  
+        // Handle successful response
+        console.log("Book entry created in the database:", response.data);
+  
+        // Show success popup using SweetAlert2
+        Swal.fire({
+          title: 'Success!',
+          text: 'Listing has been successfully made and stored in our database!',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+  
+      } catch (error) {
+        console.error("Error creating book entry:", error);
+      }
+    }
+  };
+  
+  
   const handleNoClick = () => {
     console.log("No button clicked");
   };

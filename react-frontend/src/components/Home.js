@@ -1,88 +1,80 @@
-import React from 'react';
-import Header from './Header.js';
-import Footer from './Footer.js';
-import HorizontalScrollList from './HorizontalScrollList.js';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Header from "./Header.js";
+import Footer from "./Footer.js";
+import "../styles/Listings.css"; // Import CSS file for styling
+import { BACKEND_ADDRESS } from "./config";
+import ListingDetailsPopup from "./ListingDetailsPopup.jsx";
 
-
-function Home() {
-
-// State to store the fetched data
-const [data, setData] = useState(null);
-const [loading, setLoading] = useState(true);
+function Listings() {
+  const [listings, setListings] = useState([]);
+  const [response, setResponse] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedListing, setSelectedListing] = useState(null);
 
   useEffect(() => {
-    // Function to fetch data
     const fetchData = async () => {
       try {
-        // Make a GET request to fetch data from a URL
-        const response = await fetch('http://127.0.0.1:8000/api/test/');
-        
-        // Check if the request was successful
+        const response = await fetch(`${BACKEND_ADDRESS}/fetch-listings/`);
+        setResponse(response);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Failed to fetch listings");
         }
-        
-        // Parse the JSON response
-        const jsonData = await response.json();
-        
-        // Set the fetched data to the state
-        setData(jsonData);
-        setLoading(false);
+        const data = await response.json();
+        setListings(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-        setData("");
+        console.error("Error fetching listings:", error);
       }
     };
 
-    // Call the fetchData function when the component mounts
     fetchData();
+  }, []);
 
-    // Clean up function to cancel any pending fetch request when the component unmounts
-    return () => {
-      
-    };
-  }, []); // Empty dependency array means this effect runs only once, after the initial render
-  console.log(data)
+  const handleListingClick = (listing) => {
+    console.log("Listing clicked:", listing); // Log clicked listing data
+    setShowPopup(true);
+    setSelectedListing(listing);
+    
+  };
 
-  const items = [
-    <div>
-      {/* Conditionally render loading message if isLoading is true */}
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        // Render content once data is fetched
-        <div className="item-content">{data.content}</div>
-      )}
-    </div>,
-    <div className="item-content">Item 2</div>,
-    <div className="item-content">Item 3</div>,
-    <div className="item-content">Item 4</div>,
-    <div className="item-content">Item 5</div>,
-    <div className="item-content">Item 5</div>,
-    <div className="item-content">Item 5</div>,
-  ];
-  
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    setSelectedListing(null);
+  };
 
   return (
-
     <div className="App">
-
       <Header />
-      <div className="CenterScreen">
-        <div><p>This is the home page</p></div>
-        <div className="list">
-          <HorizontalScrollList items = {items}></HorizontalScrollList>
-        </div>
+      {listings.length > 0 ? (
+        <ul className="listings-grid">
+          {listings.map((listing) => (
+            <li
+              key={listing.listingid}
+              className="listing-item"
+              onClick={() => handleListingClick(listing)}
+            >
+              <div className="listing-content">
+                <h3>{listing.title}</h3>
+                <p>by: {listing.authors}</p>
+                <p>category: {listing.categories}</p>
+                <img src={listing.thumbnail} alt={listing.title} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading listings...</p>
+      )}
 
-        <div className="list">
-        <HorizontalScrollList items = {items}></HorizontalScrollList>
-        </div>
-      </div>
+      {showPopup && (
+        <ListingDetailsPopup
+          listing={selectedListing}
+          onClose={handlePopupClose}
+        />
+      )}
 
       <Footer />
     </div>
   );
 }
-export default Home;
+
+export default Listings;
