@@ -18,7 +18,7 @@ function Header() {
           </Link>
         </div>
         <ul className={styles.links}>
-          <li><Link to="/listings">Listings</Link></li>
+          <li><Link to="/">Listings</Link></li>
           <li><Link to="/createlisting">Create Listing</Link></li>
           <li><Link to="/aboutus">About Us</Link></li>
           <li id={styles.SignInLink}><Link to="/signin">Sign In</Link></li>

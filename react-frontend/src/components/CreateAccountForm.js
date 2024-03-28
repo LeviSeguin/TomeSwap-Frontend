@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/CreateAccountForm.css';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 const CreateAccountForm = () => {
   const [username, setUsername] = useState('');
@@ -50,11 +51,28 @@ const CreateAccountForm = () => {
       
       //if status from response is not ok, log error and return
       if (!response.ok) {
-        setError('Problem from server: check console');
-        console.log("from server: ", responseData)
+        let errorMessage;
+      
+        try {
+          errorMessage = responseData.error; 
+        } catch (error) {
+          errorMessage = 'An unexpected error occurred.'; 
+        }
+      
+        setError(errorMessage); 
+        console.error("Detailed server error:", responseData); 
         return;
       }
       
+      // If status from response is ok, show success popup
+      Swal.fire({
+        title: 'Success!',
+        text: 'Registration successful!',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+      
+
       //if status from response is ok, log message, reset fields
       console.log('From server: ', responseData);
       // Reset form fields
@@ -70,6 +88,7 @@ const CreateAccountForm = () => {
       // Handle error, e.g., display error message to the user
     }
   };
+
   
 
   return (
