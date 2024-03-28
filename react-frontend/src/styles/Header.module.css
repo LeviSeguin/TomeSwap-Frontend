@@ -4,12 +4,13 @@
 
 #LogoText {
     float: left;
-    margin: 15px 20px 0px 10px;
+    margin: 0px 20px 0px 10px;
     color: white;
     font-size: 40px;
+    text-decoration: none;
 }
 
-/* Search */
+/* Old Search css, moved to ListingsSearchBar */
 .SearchBar {
     padding: 12px;
     margin-top: 5px;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/Header.module.css';
 import searchImage from './search.png'; // Import the search image
 
+
 function Header() {
   return (
     <div className={styles.background}>
@@ -17,7 +18,7 @@ function Header() {
           </Link>
         </div>
         <ul className={styles.links}>
-          <li><Link to="/">Listings</Link></li>
+          <li><Link to="/listings">Listings</Link></li>
           <li><Link to="/createlisting">Create Listing</Link></li>
           <li><Link to="/aboutus">About Us</Link></li>
           <li id={styles.SignInLink}><Link to="/signin">Sign In</Link></li>

@@ -44,7 +44,6 @@ function Listings() {
   return (
     <div className="App">
       <Header />
-
       {listings.length > 0 ? (
         <ul className="listings-grid">
           {listings.map((listing) => (

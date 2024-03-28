@@ -8,6 +8,7 @@ import PrivacyPolicy from './components/PrivacyPolicy.js';
 import ContactUs from './components/ContactUs.js';
 import SearchResults from './components/SearchResults.js'; 
 import 'buffer';
+import Listings from './components/Listings.js';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/privacypolicy' element={<PrivacyPolicy />} />
         <Route path='/contactus' element={<ContactUs />} />
+        <Route path="/listings" element={<Listings />} />
         <Route path='/search' element={<SearchResults/>} />
       </Routes>
     </Router>
