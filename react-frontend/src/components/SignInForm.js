@@ -31,17 +31,24 @@ const SignInForm = () => {
         body: JSON.stringify({ username, password }),
       });
   
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
+      //get response data
       const responseData = await response.json();
+      
+      //if status from response is not ok, log error and return
+      if (!response.ok) {
+        setError('Problem from server: check console');
+        console.log("from server: ", responseData)
+        return;
+      }
+      
+      //if status from response is ok, log message, reset fields
       console.log('message from server:', responseData);
       // Reset form fields
       setUsername('');
       setPassword('');
       setError('');
-      // Optionally, you can redirect the user to a success page or do other actions
+   
+      //idk what this does
     } catch (error) {
       console.error('Error submitting registration:', error.message);
       // Handle error, e.g., display error message to the user
