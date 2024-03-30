@@ -54,6 +54,8 @@ const SignInForm = () => {
 
       // If status from response is ok, store the username on the frontend sessionStorage
       sessionStorage.setItem('username', responseData["user authenticated "]);
+      sessionStorage.setItem('isLoggedIn', 'true');
+
       //testing accessing session storage
       const test = sessionStorage.getItem('username');
       console.log(test);
@@ -64,7 +66,11 @@ const SignInForm = () => {
         text: 'Sign-in was successful!',
         icon: 'success',
         confirmButtonText: 'Ok'
+      }).then((result) => {
+        //go to home page after signing in
+        window.location.href = '/'
       });
+
       
       
       //if status from response is ok, log message, reset fields
