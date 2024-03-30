@@ -51,6 +51,12 @@ const SignInForm = () => {
         console.error("Detailed server error:", responseData); 
         return;
       }
+
+      // If status from response is ok, store the username on the frontend sessionStorage
+      sessionStorage.setItem('username', responseData["user authenticated "]);
+      //testing accessing session storage
+      const test = sessionStorage.getItem('username');
+      console.log(test);
       
       // If status from response is ok, show success popup
       Swal.fire({
