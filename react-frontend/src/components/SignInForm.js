@@ -26,6 +26,7 @@ const SignInForm = () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/login/', {
         method: 'POST',
+        credentials: 'include', // Include cookies
         headers: {
           'Content-Type': 'application/json',
         },
