@@ -49,6 +49,7 @@ const CreateListing = () => {
       formData.append("image", file);
 
       const response = await axios.post(`${BACKEND_ADDRESS}/upload/`, formData, {
+        withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -97,12 +98,13 @@ const CreateListing = () => {
             categories: bookDetails.categories,
             thumbnail: bookDetails.thumbnail,
             description: bookDetails.description,
-          }
+          },
+          {withCredentials: true}
         );
   
         // Handle successful response
         console.log("Book entry created in the database:", response.data);
-  
+
         // Show success popup using SweetAlert2
         Swal.fire({
           title: 'Success!',
