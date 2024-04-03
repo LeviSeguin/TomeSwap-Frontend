@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 
-import Search from "../components/search";
-import BookCard from "../components/bookCard";
+import Search from "./search";
+import BookCard from "./bookCard";
 import popularBooks from "../utilities/popularBooks"
 
 export const AppContext = createContext();

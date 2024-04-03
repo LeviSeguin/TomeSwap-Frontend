@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Config from "../../app.dev.config.json"
+import Config from '../app.dev.config.json' 
 
 export default async function recommendBoooks(book_name) {
     let data = []

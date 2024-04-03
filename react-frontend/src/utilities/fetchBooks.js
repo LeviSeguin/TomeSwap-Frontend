@@ -1,7 +1,8 @@
 import axios from 'axios'
-import Config from "../../app.dev.config.json"
+import Config from '../app.dev.config.json' 
 
 export default async function fetchBooks(searchText) {
+    console.log(Config.api.url)
     let data = []
     await axios.get(Config.api.url + '/search/' + searchText)
         .then(response => {
