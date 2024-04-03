@@ -49,6 +49,7 @@ const CreateListing = () => {
       formData.append("image", file);
 
       const response = await axios.post(`${BACKEND_ADDRESS}/upload/`, formData, {
+        withCredentials: true, //this might fix sessions
         headers: {
           "Content-Type": "multipart/form-data",
         },
