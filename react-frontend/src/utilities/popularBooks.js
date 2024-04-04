@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Config from "../../app.dev.config.json"
+import Config from '../app.dev.config.json' 
 
 export default async function fetchBooks(top = 10) {
     let data = []

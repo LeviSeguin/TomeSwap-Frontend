@@ -4,7 +4,7 @@ import AboutUs from './components/AboutUs.js';
 import Home from './components/Home.js';
 import CreateListing from './components/CreateListing.js';
 import SignIn from './components/SignIn.js';
-
+import Root from './components/root.jsx'
 function App() {
   return (
     <Router>
@@ -13,6 +13,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path='/createlisting' element={<CreateListing />} />
         <Route path='/signin' element={<SignIn />} />
+        <Route path='/recommendedbooks' element={<Root />} />
 
       </Routes>
     </Router>

@@ -16,6 +16,7 @@ function Header() {
           <li><Link to="/">Listings</Link></li>
           <li><a href="http://localhost:5173">Recommendations</a></li>
           <li><Link to="/createlisting">Create Listing</Link></li>
+          <li><Link to="/recommendedbooks">Recommendations</Link></li>
           <li><Link to="/aboutus">About Us</Link></li>
           <li id={styles.SignInLink}><Link to="/signin">Sign In</Link></li>
         </ul>

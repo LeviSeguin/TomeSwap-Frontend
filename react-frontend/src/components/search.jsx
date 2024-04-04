@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 
-import { AppContext } from '../routes/root'
+import { AppContext } from './root'
 import fetchBooks from "../utilities/fetchBooks"
 import Loader from "./loader"
 
@@ -10,11 +10,13 @@ export default function Search(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     const searchHandler = async () => {
+        console.log('hello');
         if (searchText === '' || !searchText) {
             setBookData([])
             return
         }
         setIsLoading(true);
+        console.log('hello');
         let book_data = await fetchBooks(searchText)
         setBookData(book_data)
         setIsLoading(false)
