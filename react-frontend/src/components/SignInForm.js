@@ -26,6 +26,7 @@ const SignInForm = () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/login/', {
         method: 'POST',
+        credentials: 'include', // Include cookies
         headers: {
           'Content-Type': 'application/json',
         },
@@ -50,6 +51,14 @@ const SignInForm = () => {
         console.error("Detailed server error:", responseData); 
         return;
       }
+
+      // If status from response is ok, store the username on the frontend sessionStorage
+      sessionStorage.setItem('username', responseData["user authenticated "]);
+      sessionStorage.setItem('isLoggedIn', 'true');
+
+      //testing accessing session storage
+      const test = sessionStorage.getItem('username');
+      console.log(test);
       
       // If status from response is ok, show success popup
       Swal.fire({
@@ -57,7 +66,11 @@ const SignInForm = () => {
         text: 'Sign-in was successful!',
         icon: 'success',
         confirmButtonText: 'Ok'
+      }).then((result) => {
+        //go to home page after signing in
+        window.location.href = '/'
       });
+
       
       
       //if status from response is ok, log message, reset fields
